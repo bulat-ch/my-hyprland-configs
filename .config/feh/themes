@@ -1,0 +1,3 @@
+feh -F
+feh --image-bg black
+foo --image-bg pink --auto-zoom

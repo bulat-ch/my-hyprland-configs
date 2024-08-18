@@ -1,0 +1,40 @@
+* {
+  font-family: NotoSansMNerdFont Regular;
+  font-size: 16;
+  color: #e5e9f0;
+  background: transparent;
+}
+
+#window {
+  background: rgba (10, 12, 36, 0.75);
+  margin: auto;
+  padding: 10px;
+  border-radius: 15px;
+  border: 2px solid   #1DD3CA;
+}
+
+#input {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+
+#outer-box {
+  padding: 20px;
+}
+
+#img {
+  margin-right: 6px;
+}
+
+#entry {
+  padding: 10px;
+  border-radius: 10px;
+}
+
+#entry:selected { 
+  background-color: rgba (10, 12, 36, 0.6);
+  border-radius: 10px;
+  border: 1px solid #1DD3CA;
+}
+
