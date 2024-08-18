@@ -1,0 +1,437 @@
+﻿{
+"layer": "top",
+"position": "top",
+"height": 34,
+"margin-bottom":-12,
+"margin-top":8,
+
+
+"modules-left": ["clock","idle_inhibitor","custom/hyprshade","backlight","network","bluetooth","mpd","tray"],
+"modules-center": ["hyprland/workspaces"],
+"modules-right":  ["pulseaudio#microphone","pulseaudio","cpu","memory","custom/battery_BAT0_not_existing","battery#bat0","custom/battery_BAT1_not_existing","battery#bat1"],
+
+
+// ---------------------------------------------------------------------------------------------------------
+
+"hyprland/workspaces": {
+     "sort-by-name": true,
+     "on-click": "activate"
+},
+
+
+// ---------------------------------------------------------------------------------------------------------
+
+"hyprland/window": {
+    "max-length": 200,
+    "separate-outputs": true
+},
+
+
+// ---------------------------------------------------------------------------------------------------------
+
+"tray": {
+    "icon-size": 20,
+    "spacing": 20
+},
+
+
+// ---------------------------------------------------------------------------------------------------------
+
+"custom/battery_BAT0_not_existing": {
+  "interval": 20,
+  "max-length": 7,
+  "min-length": 7,
+  "align": 0,
+  "exec": "if ! test -d /sys/class/power_supply/BAT0; then echo 1; fi",
+  "return-type": "text",
+  "format": "{icon}",
+  "format-icons": "󱟩 BAT0",
+  "tooltip": false
+},
+
+
+// ---------------------------------------------------------------------------------------------------------
+
+"battery#bat0": {
+  "bat": "BAT0",
+  "interval": 10,
+  "max-length": 7,
+  "min-length": 7,
+  "align": 0,
+  "tooltip": false,
+  "format": "{icon} {capacity}%",
+  "format-icons": ["󱉞", "󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+  "format-charging": "  {capacity}%",
+  "format-plugged": "  {capacity}%",
+  "states": {
+  "warning": 25,
+  "critical": 10
+  },
+},
+
+
+// ---------------------------------------------------------------------------------------------------------
+
+"custom/battery_BAT1_not_existing": {
+  "interval": 20,
+  "max-length": 7,
+  "min-length": 7,
+  "align": 0,
+  "exec": "if ! test -d /sys/class/power_supply/BAT1; then echo 1; fi",
+  "return-type": "text",
+  "format": "{icon}",
+  "format-icons": "󱟩 BAT1",
+  "tooltip": false
+},
+
+
+// ---------------------------------------------------------------------------------------------------------
+
+"battery#bat1": {
+  "bat": "BAT1",
+  "interval": 10,
+  "max-length": 7,
+  "min-length": 7,
+  "align": 0,
+  "tooltip": false,
+  "format": "{icon} {capacity}%",
+  "format-icons": ["󱉞", "󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+  "format-charging": "  {capacity}%",
+  "format-plugged": "  {capacity}%",
+  "states": {
+  "warning": 25,
+  "critical": 10
+  },
+},
+
+
+// ---------------------------------------------------------------------------------------------------------
+
+"clock": {
+    "interval": 1,
+    "min-length": 13,
+    "max-length": 13,
+    "align": 0,
+    "locale": "C", 
+    "format": "  {:%I:%M:%S %p}",
+    "format-alt": "  {:%b %d, %Y}", // Icon: calendar-alt
+    
+    "tooltip": true,
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+  	"calendar": {
+  		"mode"		: "month",
+  		"mode-mon-col"	: 3,
+  		"weeks-pos"	: "left",
+  		"on-scroll"	: 1,
+  		"on-click-right": "mode",
+  		"format": {
+  		"months"	: "<span color='#e6e1cf'><b>{}</b></span>",
+        	"days"		: "<span color='#cad3f5'><b>{}</b></span>",
+	        "weekdays"	: "<span color='#ff3333'><b>{}</b></span>",
+        	"today"		: "<span color='#f5a97f'><b><u>{}</u></b></span>"
+  		}
+  	},
+        "actions": {
+  		"on-click-right"	: "mode",
+  		"on-click-forward"	: "tz_up",
+  		"on-click-backward"	: "tz_down",
+  		"on-scroll-up"		: "shift_up",
+  		"on-scroll-down"	: "shift_down"
+  	}
+},
+
+
+// ---------------------------------------------------------------------------------------------------------
+
+"cpu": {
+    "min-length": 7,
+    "max-length": 7,
+    "align":0,
+    "interval": 1,
+	"format": "{icon}  {usage}%",
+	"format-icons": [
+     	"<span color='#33ccff'>󰄰</span>", 
+        "<span color='#00d4ff'>󰪞</span>",
+        "<span color='#00dcf9'>󰪟</span>",
+        "<span color='#00e2ef'>󰪠</span>",
+        "<span color='#00e8e3'>󰪡</span>",
+        "<span color='#00eed6'>󰪢</span>",
+        "<span color='#00f5c5'>󰪣</span>",
+        "<span color='#00fbb0'>󰪤</span>",
+        "<span color='#00ff99'>󰪥</span>"
+	],
+
+    "tooltip": false,
+    "on-click-right": "kitty -e 'htop'"
+},
+
+
+// ---------------------------------------------------------------------------------------------------------
+
+"memory": {
+    "interval": 10,
+    "min-length": 7,
+    "max-length": 7,
+    "align": 0,
+    "format": "{icon} {percentage}%",
+    "format-icons": [
+	    "<span color='#33ccff'>󰄰</span>", 
+        "<span color='#00d4ff'>󰪞</span>",
+        "<span color='#00dcf9'>󰪟</span>",
+        "<span color='#00e2ef'>󰪠</span>",
+        "<span color='#00e8e3'>󰪡</span>",
+        "<span color='#00eed6'>󰪢</span>",
+        "<span color='#00f5c5'>󰪣</span>",
+        "<span color='#00fbb0'>󰪤</span>",
+        "<span color='#00ff99'>󰪥</span>"
+	],
+		
+    "align": 0,
+    "tooltip": true,
+    "tooltip-format": "Memory: {used:0.1f}G/{total:0.1f}G
+SWAP:    {swapUsed:0.1f}G/{swapTotal:0.1f}G",
+    "warning": 85,
+    "critical": 95
+},
+
+
+// ---------------------------------------------------------------------------------------------------------
+
+"network": {
+  "interval"  : 3,
+  "min-length": 2,
+  "max-length": 2,
+  "align"     : 0,
+
+  "format-wifi"         : "{icon}",
+  "format-icons"        : ["󰤯","󰤟","󰤢","󰤥","󰤨"], 
+  "format-ethernet"     : "󰱔",  //Ethernet available
+  "format-linked"       : "󰲊",  //Link Up  
+  "format-disconnected"	: "󰱟",  //Disconnected
+  "format-disabled"	    : "󰲜",	 //Admin Down
+  
+  "tooltip"                     : true,
+  "tooltip-format-ethernet"	:"IP:    {ipaddr}
+󰧝 {bandwidthUpBits}
+󰧗 {bandwidthDownBits}",
+  "tooltip-format-wifi":
+"Signal: {signalStrength}% ({signaldBm}dBm) \n
+IP:       {ipaddr}
+ESSID: {essid}
+Frequency: {frequency} MHz
+󰧝 {bandwidthUpBits}
+󰧗 {bandwidthDownBits}",
+  "on-click-right": "exec kitty --hold sh -c 'sleep 0.25
+nmtui'"
+},
+
+
+// ---------------------------------------------------------------------------------------------------------
+
+"bluetooth": {
+  // "controller": "controller1", // specify the alias of the controller if there are more than 1 on the system
+  "max-length": 2,
+  "min-length": 2,
+  "allign": 0,
+  "tooltip": true,
+  "on-click": "exec rfkill toggle bluetooth",
+  "on-click-right": "exec kitty --hold sh -c 'sleep 0.25
+bluetui'",
+
+  "format": "",
+  "format-connected": "󰂱",
+  "format-no-controller": "󰂲",
+  "format-disabled": "󰂲",
+  "format-off": "󰂲",
+  "format-on": "󰂯",
+
+  "tooltip-format": "Host name: {controller_alias} \nAddress:      {controller_address}",
+  "tooltip-format-connected": "Host name: {controller_alias} \nAddress:      {controller_address} \n \nConnected: \n{device_enumerate}",
+  "tooltip-format-enumerate-connected": "Device:   {device_alias} \nAddress: {device_address} \n",
+  "tooltip-format-no-controller": "Controller not found",
+  "tooltip-format-disabled": "Hardware Off \nBluetui won't work",
+  "tooltip-format-off": "Soft Off",
+  "tooltip-format-on": "Host name: {controller_alias} \nAddress:      {controller_address}",
+},
+
+// ---------------------------------------------------------------------------------------------------------
+
+"idle_inhibitor": {
+    "max-length": 3,
+    "min-length": 3,
+    "align": 0,
+    "tooltip": false,
+    "format": "{icon} ",
+    "format-icons": {
+    "activated": "󰒳",
+    "deactivated": "󰒲"
+    }
+},
+
+
+// ---------------------------------------------------------------------------------------------------------
+
+"backlight": {
+    "max-length": 2,
+    "min-length": 2,
+    "align": 0,
+    "tooltip": false,
+    "device": "/sys/class/backlight/",
+    "format": "{icon}",
+    "on-click": "brightnessctl -c backlight set 50%",
+    "format-icons": ["󰃞", "󰃝", "󰃠"],
+	"on-scroll-down": "brightnessctl --min-value=1 -c backlight set 1%-",
+    "on-scroll-up": "brightnessctl --min-value=1 -c backlight set +1%",
+    },
+
+
+// ---------------------------------------------------------------------------------------------------------
+
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "tooltip": false,
+    "tooltip-format": "Volume: {volume}%",
+    "format-muted": "   Mute",
+    "on-click": "wpctl set-mute @DEFAULT_SINK@ toggle",
+    "on-click-right": "qpwgraph",
+    "on-scroll-up": "wpctl set-volume -l 1.0 @DEFAULT_SINK@ 2%+",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_SINK@ 2%-",
+    "format-icons": {
+      "headphone": " ",
+      "hands-free": " ",
+      "headset": " ",
+      "phone": " ",
+      "portable": " ",
+      "car": " ",
+      "default": [" "," "," "]
+//      "default": [" - - - - -", "⏽ - - - -", "⏽⏽ - - -","⏽⏽⏽ - -","⏽⏽⏽⏽ -","⏽⏽⏽⏽⏽"]
+      },
+    "max-length": 7,
+    "min-length": 7,
+    "align": 0,
+  },
+
+
+// ---------------------------------------------------------------------------------------------------------
+
+  "pulseaudio#microphone": {
+    "format": "{format_source}",
+    "format-source": " {volume}%",
+    "tooltip": false,
+    "tooltip-format": "Mic volume: {volume}%",
+    "format-source-muted": "   Mute",
+    "on-click": "wpctl set-mute @DEFAULT_SOURCE@ toggle",
+    "on-click-right": "pavucontrol",
+    "on-scroll-up": "wpctl set-volume -l 1.0 @DEFAULT_SOURCE@ 2%+",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_SOURCE@ 2%-",
+    "max-length": 7,
+    "min-length": 7,
+    "align": 0
+  },
+
+
+// ---------------------------------------------------------------------------------------------------------
+
+"mpris": {
+    "max-length": 3,
+    "min-length": 3,
+    "align": 0,
+    "tooltip": true,
+    "tooltip-format": "Status - {status_icon}
+Player - {player}
+
+Length - {length}
+Artist    - {artist}
+Album  - {album}
+Title      - {title}",
+    "format": "{player_icon}",
+    "format-paused": "{status_icon}",
+    "player-icons": {
+      "default": "",
+       },
+    "status-icons": {
+      "playing": "",
+      "paused":  "",
+      "stopped": ""
+      },
+},
+
+
+// ---------------------------------------------------------------------------------------------------------
+
+"mpd": {
+  "interval": 5,
+  "max-length": 2,
+  "min-length": 2,
+  "on-click-right": "exec kitty --hold sh -c 'ncmpcpp'",
+  "format": "{stateIcon}",
+  "format-disconnected": "🎶",
+  "format-stopped": "♪",
+  "unknown-tag": "N/A",
+  "consume-icons": {
+    "on": " " // Icon shows only when "consume" is on
+  },
+  "random-icons": {
+    "off": "  Off",
+    "on": "  On"
+  },
+  "repeat-icons": {
+    "on": "  On",
+    "off": "  Off"
+  },
+  "single-icons": {
+    "on": "  Single"
+  },
+  "state-icons": {
+    "paused": "",
+    "playing": "",
+    "stopped": ""
+  },
+
+  "artist-len": 50,
+  "title": 50,
+  "album-len": 50,
+
+
+
+  "tooltip-format": "State   -  {stateIcon}    {randomIcon}      {repeatIcon}{singleIcon}
+
+Artist   - {artist}
+Title    - {title} 
+Album - {album}",
+
+  "tooltip-format-disconnected": "MPD (disconnected)",
+},
+
+
+// ---------------------------------------------------------------------------------------------------------
+
+"custom/hyprshade": {
+    "max-length": 2,
+    "min-length": 2,
+    "align": 0,
+	"tooltip": false,
+	"on-click": "hyprshade toggle blue-light-filter",
+    "format": "󰖔",
+	},
+},
+
+
+// ---------------------------------------------------------------------------------------------------------
+
+
+}
+
+
+
+
+//	"format-icons": [
+//     	"<span color='#b3ff1a'>▁</span>", 
+//        "<span color='#00f253'>▂</span>",
+//        "<span color='#00ce9c'>▃</span>",
+//        "<span color='#00aeaf'>▄</span>",
+//        "<span color='#0093a7'>▅</span>",
+//        "<span color='#007b8c'>▆</span>",
+//        "<span color='#006982'>▇</span>",
+//        "<span color='#1111ee'>█</span>"
+//		],
