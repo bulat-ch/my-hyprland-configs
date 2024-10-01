@@ -15,6 +15,7 @@ hypridle
 hyprpicker
 hyprshot
 hyprcursor
+hyprshade
 kitty
 waybar
 wofi
@@ -26,7 +27,6 @@ xgd-portal-hyprland-git
 dunst
 thunar
 gvfs
-hyprshade
 udiskie
 feh
 qpwgraph
@@ -47,7 +47,6 @@ ttf-noto-nerd
 noto-fonts
 otf-ipafont
 adobe-source-han-sans
-xbindkeys
 bluez
 bluetui
 batsignal
@@ -58,8 +57,9 @@ libreoffice
 dosfstools
 ntfs-3g
 jmtpfs
-kvantum
 nano
 cups
 cups-pdf
+qemu-base
+virt-manager
 ```
