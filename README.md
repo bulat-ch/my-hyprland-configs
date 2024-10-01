@@ -3,6 +3,7 @@ This is my Arch+Hyprland config backup files for everyday using on my laptop, no
 May be I will update configs may be not.
 
 Packages what I am using:
+```
 hyprland
 networkmanager
 modemmanager
@@ -55,3 +56,4 @@ nano
 cups
 cups-pdf
 ntp
+```
