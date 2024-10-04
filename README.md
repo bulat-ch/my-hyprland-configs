@@ -43,8 +43,6 @@ fcitx5-configtool
 fcitx5-mozc 
 qt5-wayland
 qt6-wayland
-ttf-noto-nerd
-noto-fonts
 otf-ipafont
 adobe-source-han-sans
 bluez
@@ -53,7 +51,10 @@ batsignal
 gimp
 portproton
 man
-libreoffice
+onlyoffice-bin
+ttf-noto-nerd
+noto-fonts
+ttf-ms-fonts
 dosfstools
 ntfs-3g
 jmtpfs
