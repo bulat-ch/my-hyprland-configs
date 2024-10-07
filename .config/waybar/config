@@ -1,4 +1,4 @@
-﻿{
+{
 "layer": "top",
 "position": "top",
 "height": 34,
@@ -112,7 +112,8 @@
     "min-length": 13,
     "max-length": 13,
     "align": 0,
-    "locale": "C", 
+    "timezone": "",
+    "locale": "", 
     "format": "  {:%I:%M:%S %p}",
     "format-alt": "  {:%b %d, %Y}", // Icon: calendar-alt
     
@@ -333,9 +334,10 @@ bluetui'",
 // ---------------------------------------------------------------------------------------------------------
 
 "mpris": {
-    "max-length": 3,
-    "min-length": 3,
-    "align": 0,
+  "max-length": 3,
+  "min-length": 3,
+  "align": 0,
+  "on-click": "playerctl --all-players play-pause",
     "tooltip": true,
     "tooltip-format": "Status - {status_icon}
 Player - {player}
@@ -360,11 +362,13 @@ Title      - {title}",
 // ---------------------------------------------------------------------------------------------------------
 
 "mpd": {
-  "interval": 1,
+  "interval": 5,
   "max-length": 2,
   "min-length": 2,
   "on-click": "playerctl --player mpd play-pause",
   "on-click-right": "exec kitty --hold sh -c 'ncmpcpp'",
+  "on-scroll-up": "playerctl --player mpd volume 0.01+",
+  "on-scroll-down": "playerctl --player mpd volume 0.01-",
   "format": "{stateIcon}",
   "format-disconnected": "🎶",
   "format-stopped": "♪",
@@ -396,6 +400,9 @@ Title      - {title}",
 
 
   "tooltip-format": "State   -  {stateIcon}    {randomIcon}      {repeatIcon}{singleIcon}
+
+Time    - {elapsedTime:%M:%S}
+Length - {totalTime:%M:%S}
 
 Artist   - {artist}
 Title    - {title} 
