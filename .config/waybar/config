@@ -360,9 +360,10 @@ Title      - {title}",
 // ---------------------------------------------------------------------------------------------------------
 
 "mpd": {
-  "interval": 5,
+  "interval": 1,
   "max-length": 2,
   "min-length": 2,
+  "on-click": "playerctl --player mpd play-pause",
   "on-click-right": "exec kitty --hold sh -c 'ncmpcpp'",
   "format": "{stateIcon}",
   "format-disconnected": "🎶",
