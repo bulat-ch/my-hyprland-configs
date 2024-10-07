@@ -32,6 +32,7 @@ feh
 qpwgraph
 mpv
 mpd
+mpd-mpris
 ncmpcpp
 brightnessctl
 htop
