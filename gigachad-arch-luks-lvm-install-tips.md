@@ -1,8 +1,19 @@
-arch with luks and lvm
+## Что это?
+Закладка мне будущему, если забуду как ставить ArchLinux с LVM и шифрованием LUKS вручную.
+Была статья из заблокированого немногим ранее ресурса, скопирован и адаптирован под себя.
+
+##
+Начнём-с
 
 Запускаемся с образа. Проверяем наличие Интернета (оно нам понадобиться в процессе установки) и доступность диска, над которым планируем поработать.
 
+### Разметка и шифрование
 
+Для начала размечаем диск с помощью fdisk:
+
+```
+fdisk /dev/nvmeXXX
+```
 Первый раздел — EFI sytem Partition, я выделяю под него 256Mb
 
 Второй раздел — boot, 512 Mb
@@ -21,17 +32,18 @@ modprobe dm-mod
 ```
 Устанавливаем шифрование на наш раздел
 ```
-cryptsetup luksFormat -v -s 512 -h sha512 /dev/sda3
+cryptsetup luksFormat -v -s 512 -h sha512 /dev/nvme0n1p3
 ``` 
 Нас попросят подтвердить наше намерение заглавными буквами (то есть YES, а не yes или y), а далее ввести и подтвердить пароль. Во избежание проблем крайне не рекомендую этот пароль забывать.
 
 
 Открываем его (запросит установленный пароль):
 ```
-cryptsetup open /dev/sda3 luks_lvm
+cryptsetup open /dev/nvme0n1p3 luks_lvm
 ```
 
 И теперь разбиваем.
+
 Создаём раздел:
 ```
 pvcreate /dev/mapper/luks_lvm
@@ -61,10 +73,10 @@ lvremove /dev/mapper/arch-home
 Я использую файловую систему ext4, но ничего не мешает вам использовать то, что больше по вкусу.
 Обратите внимание, что раздел EFI должен быть отформатирован в fat32.
 ```
-mkfs.fat -F32 /dev/sda1
+mkfs.fat -F32 /dev/nvmeon1p1
 ```
 ```
-mkfs.ext4 /dev/sda2
+mkfs.ext4 /dev/nvme0n1p2
 ```
 ```
 mkfs.ext4 -L root /dev/mapper/arch-root
@@ -84,13 +96,13 @@ mount /dev/mapper/arch-root /mnt
 mkdir -p /mnt/{boot,home}
 ```
 ```
-mount /dev/sda2 /mnt/boot
+mount /dev/nvme0n1p2 /mnt/boot
 ```
 ```
 mkdir /mnt/boot/efi
 ```
 ```
-mount /dev/sda1 /mnt/boot/efi
+mount /dev/nvme0n1p1 /mnt/boot/efi
 ```
 ```
 mount /dev/mapper/arch-home /mnt/home
@@ -98,11 +110,27 @@ mount /dev/mapper/arch-home /mnt/home
 ```
 swapon /dev/mapper/arch-swap
 ```
+Проверяем что всё смонтировано правильно:
 ```
-swapon -a; swapon -s
+swapon -a; swapon -s; lsblk
 ```
 
-Если на данном этапе выполнить lsblk, мы увидим список наших созданных разделов.
+У меня выглядит всё так:
+```
+Filename				Type		Size		Used		Priority
+/dev/dm-1                               partition	16777212	0		-2
+NAME            MAJ:MIN RM   SIZE RO TYPE  MOUNTPOINTS
+nvme0n1         259:0    0 953.9G  0 disk  
+├─nvme0n1p1     259:1    0   256M  0 part  /boot/efi
+├─nvme0n1p2     259:2    0   512M  0 part  /boot
+└─nvme0n1p3     259:3    0 953.1G  0 part  
+  └─luks_lvm    254:0    0 953.1G  0 crypt 
+    ├─arch-swap 254:1    0    16G  0 lvm   [SWAP]
+    ├─arch-root 254:2    0   128G  0 lvm   /
+    └─arch-home 254:3    0 809.1G  0 lvm   /home
+```
+
+### Установка и первичная настройка OC
 
 Приступаем к установке Arch на наш свежеразделанный диск*:
 ```
@@ -156,7 +184,7 @@ vim /etc/default/grub
 ```
 ```
 GRUB_CMDLINE_LINUX_DEFAULT=”loglevel=3 quiet nvidia_drm.modeset=1”
-GRUB_CMDLINE_LINUX=”resume=/dev/mapper/arch-swap cryptdevice=/dev/sda3:luks_lvm root=/dev/mapper/arch-root”
+GRUB_CMDLINE_LINUX=”resume=/dev/mapper/arch-swap cryptdevice=/dev/nvme0n1p3:luks_lvm root=/dev/mapper/arch-root”
 ```
 Не забываем добавить пользователя и добавить его группы и домашнюю папку. Дополнительно поставить пароли для пользователя и root.
 ```
