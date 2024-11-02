@@ -15,7 +15,8 @@ hypridle
 hyprpicker
 hyprshot
 hyprcursor
-hyprshade
+hyprsunset
+hyprsysteminfo
 kitty
 waybar
 wofi
@@ -57,7 +58,6 @@ Other packages what I need:
 gimp
 portproton
 onlyoffice-bin
-fastfetch
 
 fcitx5
 fcitx5-configtool
