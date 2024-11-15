@@ -17,6 +17,7 @@ hyprshot
 hyprcursor
 hyprsunset
 hyprsysteminfo
+hyprpolkitagent
 kitty
 waybar
 wofi
