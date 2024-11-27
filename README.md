@@ -46,6 +46,7 @@ bluetui
 batsignal
 man
 nano
+notepadnext-bin
 otf-ipafont
 adobe-source-han-sans
 ttf-noto-nerd
