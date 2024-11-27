@@ -1,4 +1,5 @@
 #!/bin/bash
+# Make sure it has execute permissions on your system!
 
 # Countdown time in seconds
 COUNTDOWN=5
