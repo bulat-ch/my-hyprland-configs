@@ -6,9 +6,9 @@
 "margin-top":8,
 
 
-"modules-left": ["clock","idle_inhibitor","custom/hyprshade","backlight","network","bluetooth","mpd","tray"],
+"modules-left": ["clock","idle_inhibitor","custom/blue_light_filter","backlight","network","bluetooth","mpd","tray"],
 "modules-center": ["hyprland/workspaces"],
-"modules-right":  ["pulseaudio#microphone","pulseaudio","cpu","memory","custom/battery_BAT0_not_existing","battery#bat0","custom/battery_BAT1_not_existing","battery#bat1"],
+"modules-right":  ["pulseaudio#microphone","pulseaudio","cpu","memory","custom/battery_BAT0_not_existing","battery#bat0","custom/battery_BAT1_not_existing","battery#bat1","custom/powermenu"],
 
 
 // ---------------------------------------------------------------------------------------------------------
@@ -415,32 +415,27 @@ Album - {album}",
 
 // ---------------------------------------------------------------------------------------------------------
 
-"custom/hyprshade": {
-    "max-length": 2,
-    "min-length": 2,
-    "align": 0,
-	"tooltip": false,
-	"on-click": "hyprshade toggle blue-light-filter",
-    "format": "󰖔",
-	},
+"custom/blue_light_filter": {
+  "max-length": 2,
+  "min-length": 2,
+  "align": 0,
+  "tooltip": false,
+  "on-click": "exec $HOME/.config/hypr/scripts/hyprsunset_toggle.sh",
+  "format": "󰖔",
+  "format-alt": "󱁞",
 },
-
 
 // ---------------------------------------------------------------------------------------------------------
 
-
+"custom/powermenu": {
+  "max-length": 3,
+  "min-length": 3,
+  "align": 0,
+  "tooltip": true,
+  "tooltip-format": "Left    - poweroff \nRight - reboot",
+  "on-click": "poweroff",
+  "on-click-right": "reboot",
+  "format":"", 
+},
+// ---------------------------------------------------------------------------------------------------------
 }
-
-
-
-
-//	"format-icons": [
-//     	"<span color='#b3ff1a'>▁</span>", 
-//        "<span color='#00f253'>▂</span>",
-//        "<span color='#00ce9c'>▃</span>",
-//        "<span color='#00aeaf'>▄</span>",
-//        "<span color='#0093a7'>▅</span>",
-//        "<span color='#007b8c'>▆</span>",
-//        "<span color='#006982'>▇</span>",
-//        "<span color='#1111ee'>█</span>"
-//		],
