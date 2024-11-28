@@ -187,7 +187,7 @@ GRUB_CMDLINE_LINUX=”resume=/dev/mapper/arch-swap cryptdevice=/dev/nvme0n1p3:lu
 ```
 Не забываем добавить пользователя и добавить его группы и домашнюю папку. Дополнительно поставить пароли для пользователя и root.
 ```
-useradd -m -G adm,ftp,games,http,log,rfkill,,sys,systemd-journal,uucp,wheel,audio,disk,floppy,input,kvm,optical,scanner,storage,video <username>
+useradd -m -G adm,ftp,games,http,log,rfkill,,sys,systemd-journal,uucp,wheel,audio,disk,floppy,input,kvm,optical,scanner,storage,video,i2c <username>
 ```
 Устанавливаем пароль для root'a
 ```
