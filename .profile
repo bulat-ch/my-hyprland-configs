@@ -15,5 +15,7 @@ for ((i = COUNTDOWN; i > 0; i--)); do
 done
 
 # Executing $PROGRAM
+echo ""
 echo "Executing $PROGRAM..."
+echo ""
 exec "$PROGRAM"
