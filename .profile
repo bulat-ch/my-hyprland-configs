@@ -1,4 +1,6 @@
 #!/bin/bash
+
+#It will be placed in /home/<username>/
 # Make sure it has execute permissions on your system!
 
 # Countdown time in seconds
