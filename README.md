@@ -18,6 +18,8 @@ hyprcursor
 hyprsunset
 hyprsysteminfo
 hyprpolkitagent
+hyprwayland-scanner
+hyprland-qtutils
 kitty
 waybar
 wofi
@@ -52,6 +54,7 @@ adobe-source-han-sans
 ttf-noto-nerd
 noto-fonts
 ttf-ms-fonts
+ddcutil
 ```
 
 Other packages what I need:
