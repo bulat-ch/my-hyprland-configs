@@ -1,15 +1,15 @@
 *{
-    font-family: NotoSansMNerdFont Regular; 
+    font-family: "NotoSansMNerdFont";
+	font-weight: normal;
+	font-style: initial;
+	font-stretch: semi-condensed; 
     font-size: 1.2rem;
     min-height: 0;
     color: white;
 }
 
 window#waybar {
-    background-color: transparent;
-}
-window#waybar.empty #window {
-	background: rgba(255, 00, 00, 0.0);
+    background: transparent;
 }
 
 #workspaces{
