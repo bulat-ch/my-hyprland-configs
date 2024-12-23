@@ -1,15 +1,17 @@
 *{
     font-family: "NotoSansMNerdFont";
-    font-weight: normal;
-    font-style: initial;
-    font-stretch: semi-condensed; 
+	font-style: initial;
+	font-stretch: semi-condensed; 
     font-size: 1.2rem;
     min-height: 0;
-    color: white;
+    color: #FFFFFF;
 }
 
 window#waybar {
     background: transparent;
+}
+window#waybar.empty #window {
+	background: rgba(255, 00, 00, 0.0);
 }
 
 #workspaces{
@@ -23,7 +25,7 @@ window#waybar {
     border-radius: 15px;
     margin-right: 10px;
     padding: 1px 10px;
-    font-weight: bolder;
+    font-weight: 700;
     background-color: #181818;
 }
 
