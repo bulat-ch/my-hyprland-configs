@@ -113,7 +113,7 @@
     "max-length": 15,
     "align": 0,
     "timezone": "",
-    "locale": "", 
+    "locale": "en_US.UTF-8", 
     "format": "  {:%I:%M:%S %p}",
     "format-alt": "  {:%b %d,%Y}", // Icon: calendar-alt
     
@@ -126,10 +126,11 @@
   		"on-scroll"	: 1,
   		"on-click-right": "mode",
   		"format": {
-  		"months"	: "<span color='#e6e1cf'><b>{}</b></span>",
-        	"days"		: "<span color='#cad3f5'><b>{}</b></span>",
-	        "weekdays"	: "<span color='#ff3333'><b>{}</b></span>",
-        	"today"		: "<span color='#f5a97f'><b><u>{}</u></b></span>"
+			"months"	: "<span color='#00FF99'>{}</span>",
+			"days"		: "<span color='#FFFFFF'>{}</span>",
+			"weeks"		: "<span color='#00FF99'>{}</span>",
+			"weekdays"	: "<span color='#33CCFF'>{}</span>",
+			"today"		: "<span color='#FF0000'><b><u>{}</u></b></span>",
   		}
   	},
         "actions": {
