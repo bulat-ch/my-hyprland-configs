@@ -25,7 +25,7 @@ waybar
 wofi
 networkmanager
 xgd-portal-hyprland-git
-dunst
+mako
 thunar
 gvfs
 jmtpfs
@@ -56,6 +56,7 @@ noto-fonts
 ttf-ms-fonts
 ddcutil
 ```
+You can use dunst instead mako. Same config are created in .configs/dunst
 
 Other packages what I need:
 
