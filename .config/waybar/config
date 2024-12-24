@@ -191,7 +191,7 @@
     "align": 0,
     "tooltip": true,
     "tooltip-format": "Memory: {used:0.1f}G/{total:0.1f}G
-SWAP:    {swapUsed:0.1f}G/{swapTotal:0.1f}G",
+SWAP:   {swapUsed:0.1f}G/{swapTotal:0.1f}G",
     "warning": 85,
     "critical": 95
 },
@@ -217,8 +217,8 @@ SWAP:    {swapUsed:0.1f}G/{swapTotal:0.1f}G",
 󰧝 {bandwidthUpBits}
 󰧗 {bandwidthDownBits}",
   "tooltip-format-wifi":
-"Signal: {signalStrength}% ({signaldBm}dBm) \n
-IP:       {ipaddr}
+"Signal:{signalStrength}% ({signaldBm}dBm) \n
+IP:    {ipaddr}
 ESSID: {essid}
 Frequency: {frequency} MHz
 󰧝 {bandwidthUpBits}
@@ -344,9 +344,9 @@ bluetui'",
 Player - {player}
 
 Length - {length}
-Artist    - {artist}
+Artist - {artist}
 Album  - {album}
-Title      - {title}",
+Title  - {title}",
     "format": "{player_icon}",
     "format-paused": "{status_icon}",
     "player-icons": {
@@ -401,14 +401,14 @@ Title      - {title}",
 
 
 
-  "tooltip-format": "State   -  {stateIcon}    {randomIcon}      {repeatIcon}{singleIcon}
+  "tooltip-format": "State  -  {stateIcon}    {randomIcon}    {repeatIcon}{singleIcon}
 
-Time    - {elapsedTime:%M:%S}
+Time   - {elapsedTime:%M:%S}
 Length - {totalTime:%M:%S}
 
-Artist   - {artist}
-Title    - {title} 
-Album - {album}",
+Artist - {artist}
+Title  - {title} 
+Album  - {album}",
 
   "tooltip-format-disconnected": "MPD (disconnected)",
 },
@@ -433,7 +433,7 @@ Album - {album}",
   "min-length": 3,
   "align": 0,
   "tooltip": true,
-  "tooltip-format": "Left    - poweroff \nRight - reboot",
+  "tooltip-format":	"Left  - poweroff \nRight - reboot",
   "on-click": "poweroff",
   "on-click-right": "reboot",
   "format":"", 
