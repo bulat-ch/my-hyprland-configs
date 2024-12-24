@@ -1,0 +1,83 @@
+### GLOBAL CONFIGURATION OPTIONS
+
+# Set maximum number of expired notifications to keep in the history buffer to n. If the buffer is full, newly expired notifications replace the oldest ones. If 0, history is disabled.
+# Default: 5
+max-history=2
+
+# Sorts incoming notifications by time and/or priority in ascending(+) or descending(-) order.
+# +/-time, +/-priority 
+# Default: -time
+sort=-time
+
+
+### BINDING OPTIONS
+# Bindings allow one to perform an action when an event is triggered.
+# Supported options:
+
+
+# Perform the action when the left pointer button is pressed.
+# Default: invoke-default-action
+on-button-left=dismiss
+
+
+# Perform the action when the middle pointer button is pressed.
+# Default: none
+on-button-middle=dismiss-all
+
+# Perform the action when the right pointer button is pressed.
+# Default: dismiss
+on-button-right=invoke-default-action
+
+# Perform the action when tapped via a touch device.
+# Default: dismiss
+on-touch=dismiss
+
+# Perform the action when the notification is opened.
+# Default: none
+on-notify=none
+
+
+
+layer=overlay
+background-color=#0A0C24
+width=500
+height=150
+anchor=top-left
+border-size=2
+border-color=#88c0d0
+border-radius=10
+margin=20,20
+
+
+
+icons=1
+icon-location=left
+max-icon-size=64
+# icon-path=~/.config/mako/icon
+text-alignment=left
+format=<u><b>%a</b></u>\n<i><b>%s</b></i>\n<i>%b</i>
+font=NotoSansMNerdFont Regular 12
+text-color=#FFFFFFFF
+
+
+default-timeout=10000
+# ignore-timeout=500
+
+
+[urgency=low]
+border-color=#33ccffee
+default-timeout=3000
+# icon-path=~/.config/mako/icon/low96.png
+
+[urgency=normal]
+border-color=#00ff99ee
+default-timeout=5000
+
+[urgency=high]
+border-color=#ff0000
+default-timeout=20000
+
+[category=mpd]
+default-timeout=5000
+group-by=category
+
