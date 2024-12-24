@@ -247,13 +247,13 @@ bluetui'",
   "format-off": "󰂲",
   "format-on": "󰂯",
 
-  "tooltip-format": "Host name: {controller_alias} \nAddress:      {controller_address}",
-  "tooltip-format-connected": "Host name: {controller_alias} \nAddress:      {controller_address} \n \nConnected: \n{device_enumerate}",
-  "tooltip-format-enumerate-connected": "Device:   {device_alias} \nAddress: {device_address} \n",
+  "tooltip-format": "Host name: {controller_alias} \nAddress:   {controller_address}",
+  "tooltip-format-connected": "Host name: {controller_alias} \nAddress:   {controller_address} \n \nConnected: \n{device_enumerate}",
+  "tooltip-format-enumerate-connected": "Device:    {device_alias} \nAddress:   {device_address} \n",
   "tooltip-format-no-controller": "Controller not found",
   "tooltip-format-disabled": "Hardware Off \nBluetui won't work",
   "tooltip-format-off": "Soft Off",
-  "tooltip-format-on": "Host name: {controller_alias} \nAddress:      {controller_address}",
+  "tooltip-format-on": "Host name: {controller_alias} \nAddress:   {controller_address}",
 },
 
 // ---------------------------------------------------------------------------------------------------------
