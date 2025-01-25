@@ -428,19 +428,15 @@ Album  - {album}",
 
 // ---------------------------------------------------------------------------------------------------------
 
-"custom/backlight_ext"
-
-
-
 "custom/backlight_external": {
-  "max-length": 3,
-  "min-length": 3,
+  "max-length": 2,
+  "min-length": 2,
   "allign": 0,
   "tooltip": true,
   "tooltip-format": "External monitor brightness \nit is very slow",
   "on-scroll-up": "ddcutil -d 1 setvcp 10 + 20 --sleep-multiplier=0.1 --noverify  --disable-capabilities-cache",
   "on-scroll-down": "ddcutil -d 1 setvcp 10 - 20 --sleep-multiplier=0.1 --noverify  --disable-capabilities-cache",
-  "format": "",
+  "format": "󱄄 ",
   },
   
   // ---------------------------------------------------------------------------------------------------------
