@@ -6,7 +6,7 @@
 "margin-top":8,
 
 
-"modules-left": ["clock","idle_inhibitor","custom/blue_light_filter","backlight","network","bluetooth","mpd","tray"],
+"modules-left": ["clock","idle_inhibitor","custom/blue_light_filter","backlight", "custom/backlight_external","network","bluetooth","mpd","tray"],
 "modules-center": ["hyprland/workspaces"],
 "modules-right":  ["pulseaudio#microphone","pulseaudio","cpu","memory","custom/battery_BAT0_not_existing","battery#bat0","custom/battery_BAT1_not_existing","battery#bat1","custom/powermenu"],
 
@@ -427,6 +427,23 @@ Album  - {album}",
 },
 
 // ---------------------------------------------------------------------------------------------------------
+
+"custom/backlight_ext"
+
+
+
+"custom/backlight_external": {
+  "max-length": 3,
+  "min-length": 3,
+  "allign": 0,
+  "tooltip": true,
+  "tooltip-format": "External monitor brightness \nit is very slow",
+  "on-scroll-up": "ddcutil -d 1 setvcp 10 + 20 --sleep-multiplier=0.1 --noverify  --disable-capabilities-cache",
+  "on-scroll-down": "ddcutil -d 1 setvcp 10 - 20 --sleep-multiplier=0.1 --noverify  --disable-capabilities-cache",
+  "format": "",
+  },
+  
+  // ---------------------------------------------------------------------------------------------------------
 
 "custom/powermenu": {
   "max-length": 3,
