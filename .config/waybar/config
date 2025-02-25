@@ -63,9 +63,6 @@
   "format-icons": ["󱉞", "󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
   "format-charging": "  {capacity}%",
   "format-plugged": "  {capacity}%",
-  "states": {
-  "warning": 25,
-  "critical": 10
   },
 },
 
@@ -98,10 +95,6 @@
   "format-icons": ["󱉞", "󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
   "format-charging": "  {capacity}%",
   "format-plugged": "  {capacity}%",
-  "states": {
-  "warning": 25,
-  "critical": 10
-  },
 },
 
 
