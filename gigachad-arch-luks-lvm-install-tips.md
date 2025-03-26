@@ -268,3 +268,12 @@ reboot
 ```
 gsettings set org.gnome.desktop.interface gtk-theme <название темы>
 ```
+Тёмная тема для GTK3:
+```
+gtk-application-prefer-dark-theme = true
+```
+Тёмная тема для GTK4:
+```
+gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+```
+
