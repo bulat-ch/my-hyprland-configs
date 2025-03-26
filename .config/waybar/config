@@ -64,7 +64,6 @@
   "format-charging": "  {capacity}%",
   "format-plugged": "  {capacity}%",
   },
-},
 
 
 // ---------------------------------------------------------------------------------------------------------
@@ -227,7 +226,7 @@ nmtui'"
   // "controller": "controller1", // specify the alias of the controller if there are more than 1 on the system
   "max-length": 2,
   "min-length": 2,
-  "allign": 0,
+  "align": 0,
   "tooltip": true,
   "on-click": "exec rfkill toggle bluetooth",
   "on-click-right": "exec kitty --hold sh -c 'sleep 0.25
