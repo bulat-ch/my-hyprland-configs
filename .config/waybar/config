@@ -274,8 +274,8 @@ bluetui'",
     "format": "{icon}",
     "on-click": "brightnessctl -c backlight set 50%",
     "format-icons": ["󰃞", "󰃝", "󰃠"],
-	"on-scroll-down": "brightnessctl --min-value=1 -c backlight set 1%-",
-    "on-scroll-up": "brightnessctl --min-value=1 -c backlight set +1%",
+	"on-scroll-down": "brightnessctl --min-value=1 -c backlight set 5%-",
+    "on-scroll-up": "brightnessctl --min-value=1 -c backlight set +5%",
     },
 
 
