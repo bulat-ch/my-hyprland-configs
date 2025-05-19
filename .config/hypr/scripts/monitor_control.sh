@@ -5,9 +5,9 @@ MODE="$1"
 
 get_status() {
     if [ -f "$TOGGLE_FILE" ]; then
-        echo '{"text": " ", "tooltip": "External monitor: OFF", "class": "off"}'
+        echo '{"text": "󰶐 ", "tooltip": "External monitor: OFF", "class": "off"}'
     else
-        echo '{"text": " ", "tooltip": "External monitor: ON", "class": "on"}'
+        echo '{"text": "󱄄 ", "tooltip": "External monitor: ON", "class": "on"}'
     fi
 }
 
