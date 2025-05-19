@@ -413,9 +413,10 @@ Album  - {album}",
   "min-length": 2,
   "align": 0,
   "tooltip": false,
-  "on-click": "exec $HOME/.config/hypr/scripts/hyprsunset_toggle.sh",
-  "format": "󰖔",
-  "format-alt": "󱁞",
+  "exec": "~/.config/hypr/scripts/hyprsunset_control.sh",
+  "return-type": "json",
+  "on-click": "~/.config/hypr/scripts/hyprsunset_control.sh toggle",
+  "signal": 9
 },
 
 // ---------------------------------------------------------------------------------------------------------
@@ -423,13 +424,15 @@ Album  - {album}",
 "custom/backlight_external": {
   "max-length": 2,
   "min-length": 2,
-  "align": 0,
+  "allign": 0,
   "tooltip": true,
-  "tooltip-format": "External monitor brightness \nit is very slow",
-  "on-scroll-up": "ddcutil -d 1 setvcp 10 + 20 --sleep-multiplier=0.1 --noverify  --disable-capabilities-cache",
-  "on-scroll-down": "ddcutil -d 1 setvcp 10 - 20 --sleep-multiplier=0.1 --noverify  --disable-capabilities-cache",
-  "format": "󱄄 ",
-  },
+  "exec": "~/.config/hypr/scripts/monitor_control.sh",
+  "return-type": "json",
+  "on-click": "~/.config/hypr/scripts/monitor_control.sh toggle",
+  "on-scroll-up": "ddcutil -d 1 setvcp 10 + 20 --sleep-multiplier=0.1 --noverify --disable-capabilities-cache",
+  "on-scroll-down": "ddcutil -d 1 setvcp 10 - 20 --sleep-multiplier=0.1 --noverify --disable-capabilities-cache",
+  "signal": 8
+},
   
   // ---------------------------------------------------------------------------------------------------------
 
