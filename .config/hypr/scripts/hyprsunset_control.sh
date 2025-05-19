@@ -5,9 +5,9 @@ MODE="$1"
 
 get_status() {
     if [ -f "$TOGGLE_FILE" ]; then
-        echo '{"text": " "}'
+        echo '{"text": "󰖔 "}'
     else
-        echo '{"text": " "}'
+        echo '{"text": "󱁞 "}'
     fi
 }
 
