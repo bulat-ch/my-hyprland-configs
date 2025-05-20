@@ -272,10 +272,10 @@ bluetui'",
     "tooltip": false,
     "device": "/sys/class/backlight/",
     "format": "{icon}",
-    "on-click": "brightnessctl -c backlight set 50%",
-    "format-icons": ["󰃞", "󰃝", "󰃠"],
-	"on-scroll-down": "brightnessctl --min-value=1 -c backlight set 5%-",
-    "on-scroll-up": "brightnessctl --min-value=1 -c backlight set +5%",
+    "on-click-right": "brightnessctl -c backlight set 50%",
+    "format-icons": ["", "", ""],
+  "on-scroll-down": "brightnessctl --min-value=1 -c backlight set 1%-",
+    "on-scroll-up": "brightnessctl --min-value=1 -c backlight set +1%",
     },
 
 
@@ -419,6 +419,7 @@ Album  - {album}",
   "signal": 9
 },
 
+
 // ---------------------------------------------------------------------------------------------------------
 
 "custom/backlight_external": {
@@ -429,10 +430,11 @@ Album  - {album}",
   "exec": "~/.config/hypr/scripts/monitor_control.sh",
   "return-type": "json",
   "on-click": "~/.config/hypr/scripts/monitor_control.sh toggle",
+  "on-click-right": "ddcutil -d 1 setvcp 10 50 --sleep-multiplier=0.1 --noverify --disable-capabilities-cache",
   "on-scroll-up": "ddcutil -d 1 setvcp 10 + 20 --sleep-multiplier=0.1 --noverify --disable-capabilities-cache",
   "on-scroll-down": "ddcutil -d 1 setvcp 10 - 20 --sleep-multiplier=0.1 --noverify --disable-capabilities-cache",
   "signal": 8
-},
+
   
   // ---------------------------------------------------------------------------------------------------------
 
