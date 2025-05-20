@@ -1,13 +1,13 @@
 #!/bin/sh
 
-TOGGLE_FILE="$HOME/.config/hypr/scripts/tempfiles/.hyprsunset_toggle"
+TOGGLE_FILE="$HOME/.config/hypr/scripts/tempfiles/.hyprsunset_status"
 MODE="$1"
 
 get_status() {
     if [ -f "$TOGGLE_FILE" ]; then
-        echo '{"text": "󰖔 "}'
+        echo '{"text": "󱁞 ", "tooltip": "Night light: ON (2500K)", "class": "on"}'
     else
-        echo '{"text": "󱁞 "}'
+        echo '{"text": "󰖔 ", "tooltip": "Night light: OFF", "class": "off"}'
     fi
 }
 
@@ -15,12 +15,16 @@ case "$MODE" in
     "toggle")
         if [ -f "$TOGGLE_FILE" ]; then
             rm "$TOGGLE_FILE"
-            hyprsunset -t 2500    # enable hyprsunset
+            pkill -x hyprsunset || true
         else
             touch "$TOGGLE_FILE"
-            killall hyprsunset    # disable hyprsunset
+            if ! pgrep -x hyprsunset >/dev/null; then
+                hyprsunset -t 2500 & disown
+            fi
         fi
-       pkill -RTMIN+9 waybar
+        for pid in $(pgrep waybar); do
+            kill -RTMIN+9 "$pid"
+        done
         ;;
     *)
         get_status
