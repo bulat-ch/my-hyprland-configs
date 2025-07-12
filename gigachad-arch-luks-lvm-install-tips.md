@@ -1,5 +1,5 @@
 ## Что это?
-Закладка мне будущему, если забуду как ставить ArchLinux с LVM и шифрованием LUKS вручную.
+Закладка мне будущему, если забуду как ставить ArchLinux с LVM и шифрованием LUKS вручную. Используется 2 шт NVMe, один под систему и т.д., другой полностью под home.
 Была статья из заблокированого немногим ранее ресурса, скопирован и адаптирован под себя.
 
 ## Начнём-с
@@ -29,38 +29,75 @@ modprobe dm-crypt
 ```
 modprobe dm-mod
 ```
-Устанавливаем шифрование на наш раздел
+Устанавливаем шифрование на наши разделы. 
+Нас попросят подтвердить наше намерение заглавными буквами (то есть YES, а не yes или y), а далее ввести и подтвердить пароль. Во избежание проблем крайне не рекомендую этот пароль забывать.
+Для root:
 ```
 cryptsetup luksFormat -v -s 512 -h sha512 /dev/nvme0n1p3
+```
+И для home:
+```
+cryptsetup luksFormat -v -s 512 -h sha512 /dev/nvme1n1p1
 ``` 
-Нас попросят подтвердить наше намерение заглавными буквами (то есть YES, а не yes или y), а далее ввести и подтвердить пароль. Во избежание проблем крайне не рекомендую этот пароль забывать.
-
 
 Открываем его (запросит установленный пароль):
 ```
 cryptsetup open /dev/nvme0n1p3 luks_lvm
 ```
+```
+cryptsetup open /dev/nvme1n1p1 luks_lvm2
+```
 
-И теперь разбиваем.
+Если нужно поменять пароль:
+1. Добавить новый ключ:
+```
+cryptsetup luksAddKey /dev/nvme1n1p3
+```
+2. Проверить
+```
+cryptsetup luksOpen /dev/nvme1n1p3 test
+```
+3. Если всё ок, удалить старый ключ
+```
+cryptsetup luksRemoveKey /dev/nvme1n1p3
+```
 
+И теперь разбиваем оба диска.
+
+root и SWAP:
 Создаём раздел:
 ```
 pvcreate /dev/mapper/luks_lvm
 ```
+
 Создаём группу:
 ```
 vgcreate arch /dev/mapper/luks_lvm
 ```
-Создаём логические тома в меру своей испорченности
+Создаём логические тома в меру своей испорченности:
 ```
 lvcreate -n swap -L 16G -C y arch
 ```
 ```
 lvcreate -n root -L 100G arch
 ```
+Если у вас один диск, а не два, то можно всё оставшееся место отдать под home:
 ```
 lvcreate -n home -l +100%FREE arch
 ```
+
+home:
+Тут я заполнил полностью:
+```
+pvcreate /dev/mapper/luks_lvm2
+```
+```
+vgcreate arch /dev/mapper/luks_lvm2
+```
+```
+lvcreate -n home -l +100%FREE arch2
+```
+
 Разумеется, количество и размеры разделов зависят от ваших пожеланий и возможностей используемого “железа”.
 
 Если ошиблись и создали неверный раздел или объём, то его можно удалить, как пример "home"
@@ -78,10 +115,10 @@ mkfs.fat -F32 /dev/nvmeon1p1
 mkfs.ext4 /dev/nvme0n1p2
 ```
 ```
-mkfs.ext4 -L root /dev/mapper/arch-root
+mkfs.ext4 root /dev/mapper/arch-root
 ```
 ```
-mkfs.ext4 -L home /dev/mapper/arch-home
+mkfs.ext4 home /dev/mapper/arch2-home
 ```
 ```
 mkswap /dev/mapper/arch-swap
@@ -104,7 +141,7 @@ mkdir /mnt/boot/efi
 mount /dev/nvme0n1p1 /mnt/boot/efi
 ```
 ```
-mount /dev/mapper/arch-home /mnt/home
+mount /dev/mapper/arch2-home /mnt/home
 ```
 ```
 swapon /dev/mapper/arch-swap
@@ -116,17 +153,20 @@ swapon -a; swapon -s; lsblk
 
 У меня выглядит всё так:
 ```
-Filename				Type		Size		Used		Priority
+Filename				 Type		Size		Used		Priority
 /dev/dm-1                               partition	16777212	0		-2
-NAME            MAJ:MIN RM   SIZE RO TYPE  MOUNTPOINTS
-nvme0n1         259:0    0 953.9G  0 disk  
-├─nvme0n1p1     259:1    0   256M  0 part  /boot/efi
-├─nvme0n1p2     259:2    0   512M  0 part  /boot
-└─nvme0n1p3     259:3    0 953.1G  0 part  
-  └─luks_lvm    254:0    0 953.1G  0 crypt 
-    ├─arch-swap 254:1    0    16G  0 lvm   [SWAP]
-    ├─arch-root 254:2    0   128G  0 lvm   /
-    └─arch-home 254:3    0 809.1G  0 lvm   /home
+NAME             MAJ:MIN RM   SIZE RO TYPE  MOUNTPOINTS
+nvme0n1          259:0    0   125G  0 disk  
+├─nvme0n1p1      259:1    0   256M  0 part  /boot/efi
+├─nvme0n1p2      259:2    0   512M  0 part  /boot
+└─nvme0n1p3      259:3    0   124G  0 part  
+  └─luks_lvm     254:0    0   124G  0 crypt 
+    ├─arch-swap  254:1    0    16G  0 lvm   [SWAP]
+    └─arch-root  254:2    0   108G  0 lvm   /
+nvme0n1          269:0    0 953.9G  0 disk  
+└─nvme1n1p1      269:1    0 953.9G  0 part  
+  └─luks2_lvm    264:0    0 953.9G  0 crypt 
+    └─arch2-home 264:1    0 953.9G  0 lvm   /home
 ```
 
 ### Установка и первичная настройка OC
@@ -164,12 +204,16 @@ HOOKS=(base udev autodetect keyboard keymap modconf block encrypt lvm2 filesyste
 Обратите внимание — порядок имеет значение!
 
 
-В приведённой мной конфигурации в MODULES я добавляю ext4 и модули для nvidia для дальнейшей установки wayland.
+В приведённой мной конфигурации в MODULES я добавляю ext4 и модули для видеокарт nvidia для дальнейшей установки wayland.
 Получается такое для nvidia:
 ```
 MODULES=(ext4 usbhid xhci_hcd  nvidia  nvidia_modeset nvidia_uvm nvidia_drm)
 ```
-Для Intel (в данном случае uhd620):
+Для видеокарт AMD:
+```
+MODULES=(ext4 usbhid xhci_hcd amdgpu)
+```
+Для видеокарт Intel (в данном случае uhd620):
 ```
 MODULES=(ext4 usbhid xhci_hcd i915)
 ```
@@ -181,10 +225,31 @@ grub-install — efi-directory=/boot/efi
 ```
 vim /etc/default/grub
 ```
+Перед следующим этапом нужно получить UUID диска (не раздела, а именно диска) с root:
+```
+blkid |grep nvme0n1p3
+```
+Обычно, он указывается в начале, по типу: UUID= ...
+
 ```
 GRUB_CMDLINE_LINUX_DEFAULT=”loglevel=3 quiet nvidia_drm.modeset=1”
-GRUB_CMDLINE_LINUX=”resume=/dev/mapper/arch-swap cryptdevice=/dev/nvme0n1p3:luks_lvm root=/dev/mapper/arch-root”
+GRUB_CMDLINE_LINUX=”resume=/dev/mapper/arch-swap cryptdevice=UUID=<UUID диска с root>:luks_lvm root=/dev/mapper/arch-root”
 ```
+Если диск всего один и не планируете апгрейд то можно вместо ```cryptdevice=UUID=<UUID диска с root>:luks_lvm``` написать ```cryptdevice=UUID=/dev/nvme0n1p3:luks_lvm```
+В противном случае, нужно указывать UUID. Дело в том, что при запуске ПК диски могут определяться в разном порядке, в зависимости от фазы луны и прочей магии. И в initramfs, бывает, что обрабатывается только один cryptdevice, а второй не расшифровывается и, следовательно, root не маппится и система не может смонтировать / или же проблемы с /home.
+По этому, проще и надёжней, а так же безопасней расшифровывать последующие диски уже после загрузки root.
+Это делается через crypttab.
+
+Последующие диски указываются в ```/etc/crypttab```
+
+Пример:
+```
+# <name>       <device>                                     <password>              <options>
+luks_lvm2      UUID=<UUID диска с home>                     none                    luks
+```
+password - none означает, что не указан файл или пароль, по этому он будет запрашиваться при загрузке.
+UUID можно узнать так же, как было выше.
+
 Не забываем добавить пользователя и добавить его группы и домашнюю папку. Дополнительно поставить пароли для пользователя и root.
 ```
 useradd -m -G adm,ftp,games,http,log,rfkill,,sys,systemd-journal,uucp,wheel,audio,disk,floppy,input,kvm,optical,scanner,storage,video,i2c <username>
@@ -203,7 +268,7 @@ passwd <username>
 ```
 Гененрируем образ
 ```
-mkinitcpio -v -p linux
+mkinitcpio -v -p linux-zen
 ```
 Если установлено несколько ОС параллельно и чтобы можно было выбирать из grub куда вам грузиться, то необходимо установить os-prober 
 ```
