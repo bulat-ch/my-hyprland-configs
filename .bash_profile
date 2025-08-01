@@ -1,7 +1,13 @@
 #!/bin/bash
+# ~/.bash_profile
 
-#It will be placed in /home/<username>/
-# Make sure it has execute permissions on your system!
+### Original part after Linux/DE/WM install ###
+
+[[ -f ~/.bashrc ]] && . ~/.bashrc
+
+### ###
+
+# Next part will be placed in "/home/<username>/.bash_profile" file
 
 # Countdown time in seconds
 COUNTDOWN=5
