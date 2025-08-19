@@ -20,6 +20,7 @@ hyprsysteminfo
 hyprpolkitagent
 hyprwayland-scanner
 hyprland-qtutils
+waypaper
 kitty
 waybar
 wofi
