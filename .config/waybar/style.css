@@ -1,7 +1,7 @@
 *{
     font-family: "NotoSansMNerdFont";
-	font-style: initial;
-	font-stretch: semi-condensed; 
+    font-style: initial;
+    font-stretch: semi-condensed; 
     font-size: 1.2rem;
     min-height: 0;
     color: #FFFFFF;
@@ -9,6 +9,9 @@
 
 window#waybar {
     background: transparent;
+}
+window#waybar.empty #window {
+    background: #FF0000;
 }
 
 #workspaces{
@@ -24,12 +27,31 @@ window#waybar {
     padding: 1px 10px;
     font-weight: 700;
     background-color: #0A0C24;
+    box-shadow: none;
+    text-shadow: none;
+    border-color: #37151d;
+    color: #1f0f13;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.5s cubic-bezier(0.55, -0.68, 0.48, 1.682);
 }
 
 #workspaces button.active{
     padding: 0 20px;
-    box-shadow: #FFFFFF 0px 0px 0px 0px;
     background: #1e5589;
+    box-shadow: none;
+    text-shadow: none;
+    border-color: #37151d;
+    color: #1f0f13;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(0.55, -0.68, 0.48, 1.682);
+}
+
+#workspaces button:hover {
+    background: #51afe8;
+    color: #000000;
+    text-shadow: none;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(0.55, -0.68, 0.48, 1.682);
 }
 
 tooltip {
