@@ -69,6 +69,8 @@ onlyoffice-bin
 fcitx5
 fcitx5-configtool
 fcitx5-mozc
+fcitx5-gtk
+fcitx5-qt
 
 cups
 cups-pdf
