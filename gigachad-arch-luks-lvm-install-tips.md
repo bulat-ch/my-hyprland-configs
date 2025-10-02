@@ -341,4 +341,7 @@ gtk-application-prefer-dark-theme = true
 ```
 gsettings set org.gnome.desktop.interface color-scheme prefer-dark
 ```
-
+mpd не запускается с медиакнопок - проверь:
+```
+systemctl --user --now enable mpd-mpris
+```
