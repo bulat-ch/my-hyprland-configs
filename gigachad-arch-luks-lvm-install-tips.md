@@ -173,9 +173,9 @@ nvme0n1          269:0    0 953.9G  0 disk
 
 Приступаем к установке Arch на наш свежеразделанный диск*:
 ```
-pacstrap /mnt base base-devel efibootmgr nano grub mkinitcpio linux-zen linux-firmware lvm2 vi nano
+pacstrap /mnt base base-devel efibootmgr nano grub mkinitcpio linux linux-firmware lvm2 vi nano
 ```
-* - я использую ядро linux-zen.
+* - я использую ядро linux (есть ешё такие как linux-zen и т.д.).
  
 Если всё прошло хорошо с установкой, генерируем fstab
 ```
@@ -268,7 +268,7 @@ passwd <username>
 ```
 Гененрируем образ
 ```
-mkinitcpio -v -p linux-zen
+mkinitcpio -v -p linux
 ```
 Если установлено несколько ОС параллельно и чтобы можно было выбирать из grub куда вам грузиться, то необходимо установить os-prober 
 ```
