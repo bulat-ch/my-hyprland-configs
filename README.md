@@ -84,4 +84,8 @@ ntfs-3g
 modemmanager
 modem-manager-gui-hg
 usb_modeswitch
+
+iw
+nmap
+mtr
 ```
