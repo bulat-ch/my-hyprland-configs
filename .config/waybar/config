@@ -205,14 +205,14 @@ SWAP:   {swapUsed:0.1f}G/{swapTotal:0.1f}G",
   "format-disabled"	    : "󰲜",	 //Admin Down
   
   "tooltip"                     : true,
-  "tooltip-format-ethernet"	:"IP:    {ipaddr}
+  "tooltip-format-ethernet"	:"IP:    {ipaddr}/{cidr}
 󰧝 {bandwidthUpBits}
 󰧗 {bandwidthDownBits}",
   "tooltip-format-wifi":
 "Signal:{signalStrength}% ({signaldBm}dBm) \n
-IP:    {ipaddr}
+IP:    {ipaddr}/{cidr}
 ESSID: {essid}
-Frequency: {frequency} MHz
+Frequency: {frequency} GHz
 󰧝 {bandwidthUpBits}
 󰧗 {bandwidthDownBits}",
   "on-click-right": "exec kitty --hold sh -c 'sleep 0.25
