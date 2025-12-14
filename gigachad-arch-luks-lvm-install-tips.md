@@ -351,9 +351,10 @@ systemctl --user --now enable mpd-mpris
 2.1. Создать папку для MTP;
 
 2.2. сделать ссылку (но зачем?):
-```sudo ln -s /<путь дo>/MTP /<путь дo>/MTP.jmtpfs```
-
-2.3. добавить в fstab:
+```
+sudo ln -s /<путь дo>/MTP /<путь дo>/MTP.jmtpfs
+```
+2.3. добавить в ```/etc/fstab```:
 ```
 #jmtpfs <mount path>        fuse nodev,allow_other,<other options>                             0    0
  jmtpfs                 /<путь дo>/MTP           fuse nodev,allow_other,rw,user,noauto,noatime,uid=1000,gid=1000    0    0
