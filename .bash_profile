@@ -9,21 +9,23 @@
 
 # Next part will be placed in "/home/<username>/.bash_profile" file
 
+# Make sure that it have execution permissions
 # Countdown time in seconds
 COUNTDOWN=5
 
 # What are you want to execute
-PROGRAM="Hyprland"
+PROGRAM_NAME="Hyprland"
+PROGRAM="start-hyprland"
 
 # Interruptable timer
 for ((i = COUNTDOWN; i > 0; i--)); do
-    echo     "$PROGRAM will be executed in $i seconds..."
+    echo     "$PROGRAM_NAME will be executed in $i seconds..."
 	echo -ne "Press Ctrl+C, if you want to interrupt.\r"
     sleep 1
 done
 
 # Executing $PROGRAM
 echo ""
-echo "Executing $PROGRAM..."
+echo "Executing $PROGRAM_NAME..."
 echo ""
 exec "$PROGRAM"
