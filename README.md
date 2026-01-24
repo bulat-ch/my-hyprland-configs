@@ -63,6 +63,7 @@ Other packages what I need:
 
 ```
 gimp
+wayscriber
 portproton
 onlyoffice-bin
 
