@@ -20,6 +20,7 @@ hyprsysteminfo
 hyprpolkitagent
 hyprwayland-scanner
 hyprland-qtutils
+hyprpwcenter
 waypaper
 kitty
 waybar
@@ -31,7 +32,6 @@ thunar
 gvfs
 jmtpfs
 udiskie
-qpwgraph
 feh
 mpv
 mpd
