@@ -434,6 +434,7 @@ Album  - {album}",
   "on-scroll-up": "ddcutil -d 1 setvcp 10 + 20 --sleep-multiplier=0.1 --noverify --disable-capabilities-cache",
   "on-scroll-down": "ddcutil -d 1 setvcp 10 - 20 --sleep-multiplier=0.1 --noverify --disable-capabilities-cache",
   "signal": 8
+},
 
   
   // ---------------------------------------------------------------------------------------------------------
