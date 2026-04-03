@@ -89,4 +89,9 @@ usb_modeswitch
 iw
 nmap
 mtr
+
+anki
+mecab-ipadic
+mecab-shogo82148-git
+ttf-kanjistrokeorders
 ```
