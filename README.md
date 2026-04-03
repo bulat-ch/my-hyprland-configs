@@ -75,6 +75,9 @@ fcitx5-qt
 
 cups
 cups-pdf
+sane
+sane-airscan
+naps2
 
 qemu-base
 virt-manager
