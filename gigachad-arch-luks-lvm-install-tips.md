@@ -197,11 +197,16 @@ nano /etc/vconsole.conf
 ```
 vim /etc/mkinitcpio.conf
 ```
-Находим строчку HOOKS и дописываем encrypt, lvm2 и другие необходимые параметры. Мой HOOKS выглядит, обычно, так:
+Теперь у нас два путя.
+Путь а. Находим строчку HOOKS и дописываем encrypt, lvm2 и другие необходимые параметры. Мой HOOKS выглядит, обычно, так:
 ```
-HOOKS=(base udev autodetect keyboard keymap modconf block encrypt lvm2 filesystems fsck)
+HOOKS=(base udev autodetect microcode keyboard keymap modconf block encrypt lvm2 filesystems fsck)
 ```
-Обратите внимание — порядок имеет значение!
+Путь б. Или так:
+```
+HOOKS=(base systemd autodetect microcode modconf kms keyboard sd-vconsole block sd-encrypt lvm2 filesystems fsck)
+```
+Обратите внимание — порядок хуков имеет значение!
 
 
 В приведённой мной конфигурации в MODULES я добавляю ext4 и модули для видеокарт nvidia для дальнейшей установки wayland.
@@ -231,13 +236,21 @@ blkid |grep nvme0n1p3
 ```
 Обычно, он указывается в начале, по типу: UUID= ...
 
+Путь а.
 ```
 GRUB_CMDLINE_LINUX_DEFAULT=”loglevel=3 quiet nvidia_drm.modeset=1”
 GRUB_CMDLINE_LINUX=”resume=/dev/mapper/arch-swap cryptdevice=UUID=<UUID диска с root>:luks_lvm root=/dev/mapper/arch-root”
 ```
 Если диск всего один и не планируете апгрейд, то можно вместо ```cryptdevice=UUID=<UUID диска с root>:luks_lvm``` написать ```cryptdevice=/dev/nvme0n1p3:luks_lvm```, всё будет работать.
 В противном случае, нужно указывать UUID. Дело в том, что при запуске ПК, диски могут определяться в разном порядке, в зависимости от фазы луны и прочей магии. По этому в initramfs, бывает, что обрабатывается только один cryptdevice, а второй не расшифровывается и, следовательно, root не маппится и система не может смонтировать / или же проблемы с /home.
-Как вывод, проще и надёжней, а так же безопасней расшифровывать последующие диски уже после загрузки root.
+
+Путь б.
+```
+GRUB_CMDLINE_LINUX_DEFAULT=”loglevel=3 quiet nvidia_drm.modeset=1”
+GRUB_CMDLINE_LINUX="rd.luks.name=<UUID диска с root>=luks_lvm root=/dev/mapper/arch-root resume=/dev/mapper/arch-swap rw"
+```
+
+Как вывод из Пути а, проще и надёжней, а так же безопасней расшифровывать последующие диски уже после загрузки root.
 Это делается через crypttab.
 
 Последующие диски указываются в ```/etc/crypttab```
@@ -249,6 +262,8 @@ luks_lvm2      UUID=<UUID диска с home>                     none          
 ```
 password - none означает, что не указан файл или пароль, по этому он будет запрашиваться при загрузке.
 UUID можно узнать так же, как было выше.
+
+
 
 Не забываем добавить пользователя и добавить его группы и домашнюю папку. Дополнительно поставить пароли для пользователя и root.
 ```
